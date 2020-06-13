@@ -8,6 +8,10 @@ jupyter = "*"
 
 [packages]
 flask = "*"
+pandas = "*"
+xlrd = "*"
+twilio = "*"
+python-dotenv = "*"
 
 [scripts]
 backend-start = "flask run"
