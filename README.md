@@ -20,6 +20,12 @@ Running
 
 `pipenv run frontend-start` (or use `npm start` from frontend folder.)
 
+
+#### Building
+
+From the frontend folder, run `npm run build` to create production 
+builds of the frontend which will then be served by Flask
+
 ### Jupyter
 
 `pipenv run notebooks`
