@@ -6,9 +6,10 @@ load_dotenv()
 
 app = Flask(__name__, static_folder='../frontend/build', static_url_path='/')
 
-@app.route('/')
+@app.route('/', strict_slashes=False)
 def index():
     return app.send_static_file('index.html')
+
 
 @app.route('/data')
 def get_state_data():
