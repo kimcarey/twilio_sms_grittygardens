@@ -11,6 +11,7 @@ flask = "*"
 
 [scripts]
 backend-start = "flask run"
+frontend-start = "bash -c 'cd frontend && npm start'"
 notebooks = "jupyter notebook --notebook-dir=notebooks"
 
 [requires]

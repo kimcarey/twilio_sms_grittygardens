@@ -16,6 +16,10 @@ Running
 
 `pipenv run backend-start`
 
+### Frontend
+
+`pipenv run frontend-start` (or use `npm start` from frontend folder.)
+
 ### Jupyter
 
-`pipenv run notebooks` 
+`pipenv run notebooks`
