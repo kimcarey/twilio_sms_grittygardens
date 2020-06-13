@@ -12,6 +12,7 @@ pandas = "*"
 xlrd = "*"
 twilio = "*"
 python-dotenv = "*"
+gunicorn = "*"
 
 [scripts]
 backend-start = "flask run"
