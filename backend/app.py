@@ -31,7 +31,12 @@ def sms_reply():
     '''Respond to incoming text with simple text message'''
     resp = MessagingResponse()
 
-    resp.message("Your Gritty Garden, coming soon.")
+    body = request.form.get('Body')
+
+    if body and body.isnumeric() and len(body) == 5:
+        resp.message("Test A")
+    else:
+        resp.message("Please provide a valid zip code.")
 
     return str(resp)
 
