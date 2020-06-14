@@ -2,6 +2,8 @@ from flask import Flask, request, redirect
 import csv, json
 from twilio.twiml.messaging_response import MessagingResponse
 from dotenv import load_dotenv
+import requests
+
 load_dotenv()
 
 app = Flask(__name__, static_folder='../frontend/build', static_url_path='/')
@@ -32,15 +34,36 @@ def sms_reply():
     resp = MessagingResponse()
 
     body = request.form.get('Body')
-
     if body and body.isnumeric() and len(body) == 5:
-        resp.message("Bring a Gritty Garden to your community. Call your local rep, Marla, at (123) 456-7890.")
+        details = get_representative(body)
+        resp.message("Bring a Gritty Garden to your community. Contact your local rep: ")
+        resp.message(details)
     else:
         resp.message("Please provide a valid zip code.")
 
     return str(resp)
 
 
+def get_representative(zip_code):
+    myKey = 'AIzaSyCgRXW-JVm0QprrIf_o8v0JwGWSypw7L-A'
+    # API Endpoint
+    url = 'https://www.googleapis.com/civicinfo/v2/representatives'
+    params = {
+                'key': myKey,
+                'roles': 'legislatorLowerBody',
+                'address': zip_code
+              }
+    r = requests.get(url=url, params=params)
+    data = r.json()
+    print(data)
+    out = ""
+    # Get official's name and phone number; append to string output
+    for official in data.get('officials', []):
+        out += f"{official['name']} at "
+        for phone in official.get('phones', []):
+            out += f"{phone}"
+
+    return out
 
 if __name__=='__main__':
     app.run(debug=True)
