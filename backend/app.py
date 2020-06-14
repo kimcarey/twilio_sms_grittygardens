@@ -36,8 +36,11 @@ def sms_reply():
     body = request.form.get('Body')
     if body and body.isnumeric() and len(body) == 5:
         details = get_representative(body)
-        resp.message("Bring a Gritty Garden to your community. Contact your local rep: ")
-        resp.message(details)
+        if details:
+            resp.message("Bring a Gritty Garden to your community. Contact your local rep: ")
+            resp.message(details)
+        else:
+            resp.message("We don't have any details for your zip code at this time.")
     else:
         resp.message("Please provide a valid zip code.")
 
