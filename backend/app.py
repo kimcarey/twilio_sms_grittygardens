@@ -34,7 +34,7 @@ def sms_reply():
     body = request.form.get('Body')
 
     if body and body.isnumeric() and len(body) == 5:
-        resp.message("Test A")
+        resp.message("Bring a Gritty Garden to your community. Call your local rep, Marla, at (123) 456-7890.")
     else:
         resp.message("Please provide a valid zip code.")
 
