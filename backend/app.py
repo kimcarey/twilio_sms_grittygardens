@@ -21,7 +21,6 @@ def get_state_data():
                    "Specialized food stores", "SNAP-authorized stores", "WIC-authorized stores")
 
     reader = csv.DictReader(csvFilePath, field_names)
-    csv.re
     out = []
     for row in reader:
        out.append(row)
@@ -48,7 +47,10 @@ def sms_reply():
 
 
 def get_representative(zip_code):
-    myKey = 'AIzaSyCgRXW-JVm0QprrIf_o8v0JwGWSypw7L-A'
+    import os
+    myKey = os.environ.get('myKey')
+    if myKey is None:
+        print("Throw error?")
     # API Endpoint
     url = 'https://www.googleapis.com/civicinfo/v2/representatives'
     params = {
